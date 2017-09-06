@@ -5,7 +5,7 @@ package simplesmart.netty.rpc.serialize;
  */
 public enum SerializeProtocol {
 
-    JDKSERIALIZE("JDKnative"),PROTOCOLBUFF("protocolbuff"),PROTOSTUFF("protostuff");
+    JDKSERIALIZE("JDKnative"),PROTOSTUFF("protostuff");
 
     private String serializeProtocol;
 

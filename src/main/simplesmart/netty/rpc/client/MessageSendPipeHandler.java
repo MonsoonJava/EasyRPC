@@ -69,11 +69,14 @@ public class MessageSendPipeHandler extends SimpleChannelInboundHandler<ResultRe
     public MessageCallBack send(ClassInfoRequest request){
         if( null != channel && channel.isActive()){
             channel.writeAndFlush(request);
+            MessageCallBack callBack = new MessageCallBack();
+            callBack.setRequest(request);
+            callBackMap.put(request.getMessageId(),callBack);
+            return callBack;
+        }else{
+            //TODO channel reconnect and send the message
             return null;
         }
-        MessageCallBack callBack = new MessageCallBack();
-        callBack.setRequest(request);
-        callBackMap.put(request.getMessageId(),callBack);
-        return callBack;
+
     }
 }

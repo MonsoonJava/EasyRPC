@@ -47,14 +47,14 @@ public class MessageCallBack {
         lock.lock();
         try{
             while (null == response ){
-                finishFlag.await(100, TimeUnit.MICROSECONDS);
+                finishFlag.await(1000, TimeUnit.MILLISECONDS);
                 return null;
             }
         }catch (Exception e){
             e.printStackTrace();
         }finally {
             lock.unlock();
-            return response;
+            return response.getResult();
         }
     }
 }

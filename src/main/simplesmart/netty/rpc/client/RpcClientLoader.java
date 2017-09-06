@@ -1,6 +1,7 @@
 package simplesmart.netty.rpc.client;
 
 import com.google.common.util.concurrent.*;
+import io.netty.channel.ChannelOutboundBuffer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import simplesmart.netty.rpc.base.RpcThreadPool;
@@ -29,7 +30,7 @@ public class RpcClientLoader {
         private static final RpcClientLoader instance = new RpcClientLoader();
     }
 
-    private SerializeProtocol serializeProtocol = SerializeProtocol.JDKSERIALIZE;
+    private SerializeProtocol serializeProtocol = SerializeProtocol.PROTOSTUFF;
     private static final int parallel = Runtime.getRuntime().availableProcessors() * 2;
     private static ListeningExecutorService listeningThreadPool = MoreExecutors.listeningDecorator(RpcThreadPool.getRpcThreadPool(16,-1));
     EventLoopGroup group = new NioEventLoopGroup(parallel);
